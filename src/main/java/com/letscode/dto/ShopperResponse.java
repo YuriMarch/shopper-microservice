@@ -24,7 +24,4 @@ public class ShopperResponse {
         this.setPhoneNumber(shopper.getPhoneNumber());
         this.setCpf(shopper.getCpf());
     }
-
-    public static ShopperResponse fromShopper(Shopper shopper) {
-    }
 }
