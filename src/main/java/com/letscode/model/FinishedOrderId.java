@@ -6,13 +6,15 @@ import lombok.Setter;
 
 import org.springframework.data.annotation.Id;
 
+import java.util.UUID;
+
 @Getter
 @Setter
 @NoArgsConstructor
 public class FinishedOrderId {
 
     @Id
-    private String id;
+    private String id = UUID.randomUUID().toString();
 
     private Shopper shopper;
 }

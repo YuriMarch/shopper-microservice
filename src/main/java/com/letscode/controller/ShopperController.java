@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import javax.validation.Valid;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/shopper")
@@ -16,7 +18,7 @@ public class ShopperController {
     private final ShopperService shopperService;
 
     @PostMapping
-    public Mono<Shopper> createShopper(@RequestBody ShopperRequest shopperRequest) {
+    public Mono<Shopper> createShopper(@Valid @RequestBody ShopperRequest shopperRequest) {
         return shopperService.createShopper(shopperRequest);
     }
 

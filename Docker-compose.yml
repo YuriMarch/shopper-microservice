@@ -8,26 +8,6 @@ services:
     ports:
       - "27018:27018"
 
-#  prometheus:
-#    image: prom/prometheus
-#    command: ["--config.file=/etc/prometheus/prometheus.yml"]
-#    volumes:
-#      - .\src\main\resources:/etc/prometheus/
-#    networks:
-#      - salesnet
-#    ports:
-#      - "9091:9091"
-#
-#  grafana:
-#    image: grafana/grafana
-#    environment:
-#      - GF_SERVER_PROTOCOL=http
-#      - GF_SERVER_HTTP_PORT=3001
-#    networks:
-#      - salesnet
-#    ports:
-#      - "3001:3001"
-
 volumes:
   mongodata:
 

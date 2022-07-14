@@ -5,10 +5,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.data.annotation.Id;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import java.util.List;
 import java.util.UUID;
@@ -16,25 +17,26 @@ import java.util.UUID;
 @Getter @Setter
 @NoArgsConstructor
 @ToString
+@Entity
 public class Shopper {
 
     @Id
-    private String id;
+    private String id = UUID.randomUUID().toString();
 
-    @NotNull
+    @NotEmpty
     private String name;
 
-    @NotNull
+    @NotEmpty
     private String cpf;
 
-    @NotNull
-    @Email
+    @NotEmpty
+    @Email(message = "Invalid email")
     private String email;
 
-    @NotNull
+    @NotEmpty
     private String password;
 
-    @NotNull
+    @NotEmpty
     @Pattern(regexp="(^$|[0-9]{10})")
     private String phoneNumber;
 
