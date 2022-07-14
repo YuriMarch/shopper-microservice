@@ -12,6 +12,6 @@ public class HealthCheckController {
 
     @GetMapping("/health-check")
     public String getHealthCheck() {
-        return "Shoppers API is up and running.";
+        return "Shoppers API is up and running. Requested at: " + LocalDateTime.now();
     }
 }

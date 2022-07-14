@@ -1,7 +1,6 @@
 package com.letscode.controller;
 
 import com.letscode.dto.ShopperRequest;
-import com.letscode.dto.ShopperResponse;
 import com.letscode.model.Shopper;
 import com.letscode.service.ShopperService;
 import lombok.RequiredArgsConstructor;
@@ -34,5 +33,10 @@ public class ShopperController {
     @PutMapping("/{id}")
     public Mono<Shopper> updateShopper(@PathVariable String id, @RequestBody ShopperRequest shopperRequest) {
         return shopperService.updateShopper(id, shopperRequest);
+    }
+
+    @DeleteMapping("/{id}")
+    public Mono<Void> deleteShopperById(@PathVariable String id) {
+        return shopperService.deleteById(id);
     }
 }

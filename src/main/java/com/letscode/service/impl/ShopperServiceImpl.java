@@ -1,11 +1,12 @@
 package com.letscode.service.impl;
 
 import com.letscode.dto.ShopperRequest;
-import com.letscode.dto.ShopperResponse;
 import com.letscode.model.Shopper;
 import com.letscode.repository.ShopperRepository;
 import com.letscode.service.ShopperService;
+import com.letscode.validators.ShopperValidators;
 import lombok.RequiredArgsConstructor;
+import lombok.val;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -15,6 +16,7 @@ import reactor.core.publisher.Mono;
 public class ShopperServiceImpl implements ShopperService {
 
     private final ShopperRepository shopperRepository;
+    private final ShopperValidators shopperValidators;
 
     @Override
     public Mono<Shopper> createShopper(ShopperRequest shopperRequest) {
@@ -39,6 +41,10 @@ public class ShopperServiceImpl implements ShopperService {
         shopper.setName(shopperRequest.getName());
         shopper.setEmail(shopperRequest.getEmail());
         shopper.setPassword(shopperRequest.getPassword());
+        val validationErrors = shopperValidators.validateShopper(shopper);
+        if (!validationErrors.isEmpty()) {
+            return Mono.error(new IllegalArgumentException(String.join(", ", validationErrors)));
+        }
         shopperRepository.save(shopper);
         return Mono.just(shopper);
     }
